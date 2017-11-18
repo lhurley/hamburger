@@ -1,14 +1,65 @@
-body {
-  background-color: #fff0c1;
-  font-family: "Press Start 2P", cursive;
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+
+    background: #45484d;
+
+    /* Old browsers */
+
+    background: -moz-radial-gradient(center, ellipse cover, #45484d 0%, #000000 100%);
+
+    /* FF3.6-15 */
+
+    background: -webkit-radial-gradient(center, ellipse cover, #45484d 0%, #000000 100%);
+
+    /* Chrome10-25,Safari5.1-6 */
+
+    background: radial-gradient(ellipse at center, #45484d 0%, #000000 100%);
+
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000', GradientType=1);
+
+    /* IE6-9 fallback on horizontal gradient */
+
+    color: white;
 }
 
-.jumbotron {
-  background-color: #ffbe3d;
+@keyframes rubberBand {
+    100% {
+        transform: translate(0);
+    }
+    0% {
+        transform: translate(-100%);
+    }
 }
 
-.button {
-  color: #ec3521;
-  background-color: #ffbe3d;
-  margin: 0 auto;
+/* .container {
+    animation: 1s rubberBand;
+} */
+
+#vertical-align {
+    padding-top: 7%;
+}
+
+#devoured {
+    background-color: grey;
+    color: white;
+}
+
+.list-group {
+    color: black;
+    font-size: 12px;
+
+}
+
+#burgerForm {
+    width: 100%;
+}
+
+#burger-img {
+    -vendor-animation-duration: 3s;
+    -vendor-animation-delay: 2s;
+    -vendor-animation-iteration-count: 1;
 }

@@ -1,18 +1,12 @@
-var mysql = require("mysql");
+// get the client
+const mysql = require('mysql2');
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "burgers_db"
-});
-
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
+// create the connection to database
+const connection = mysql.createConnection({
+    host: 'cdm1s48crk8itlnr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    user: 'mw48a0sjz64bevq3',
+    database: 'lyjvxhko4x8rygtp',
+    password: 'fxhh2r5xenrr15cy',
 });
 
 module.exports = connection;

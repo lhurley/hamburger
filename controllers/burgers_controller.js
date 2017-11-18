@@ -1,60 +1,29 @@
-var express = require("express");
+const burger = require('../models/burger');
+const router = require('express').Router();
+const bodyParser = require('body-parser');
 
-var router = express.Router();
+let urlencodedParser = bodyParser.urlencoded({ extended: true })
 
-// Import the model (burger.js) to use its database functions.
-var burger = require("../models/burger.js");
-
-// Create all our routes and set up logic within those routes where required.
-router.get("/", function(req, res) {
-  burger.all(function(data) {
-    var hbsObject = {
-      burgers: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-  })
+router.get('/', (req, res) => {
+    res.redirect('/index');
 });
 
-router.post("/", function(req, res) {
-  console.log(req.body);
-  // burger.create({
-  //   burger_name: req.body.name,
-  //   devoured: false
-
-  // }, function() {
-  //   res.redirect("/");
-  // });
-
-  burger.create([
-    "burger_name", "devoured"
-  ], [
-    req.body.name, false
-  ], function() {
-    res.redirect("/");
-  });
-
+router.get('/index', (req, res) => {
+    burger.returnBurgers((content) => {
+        res.render('index', { burgs: content });
+    });
 });
 
-router.put("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  console.log("condition", condition);
-
-  burger.update({
-    devoured: req.body.devoured
-  }, condition, function() {
-    res.redirect("/");
-  });
+router.get('/index/:burgerId', (req, res) => {
+    let burgerId = (req.params.burgerId);
+    burger.updateDevoured(burgerId, 1);
+    res.redirect('/');
 });
 
-router.delete("/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  burger.delete(condition, function() {
-    res.redirect("/");
-  });
+router.post('/index', urlencodedParser, (req, res) => {
+    let newBurger = req.body.burger;
+    burger.addBurger(newBurger);
+    res.redirect('/');
 });
 
-// Export routes for server.js to use.
 module.exports = router;

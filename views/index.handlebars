@@ -1,49 +1,19 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <ul>
-                {{#each burgers}} {{#unless this.devoured}}
-                <li>
-                    {{this.burger_name}}
-                    <form action="/{{this.id}}?_method=PUT" method="POST">
-                        <input type="hidden" name="devoured" value="true">
-                        <button class="button" type="submit">EAT!</button>
-                        <hr>
-                    </form>
-                </li>
-                {{/unless}} {{/each}}
-            </ul>
-        </div>
-        <div class="col-6">
-            <form class="create-update-form" action="/" method="POST">
-
-                <div class="form-group text-center">
-                    <label for="ca"><h3>Burger Name:</h3></label>
-                    <input type="text" id="ca" name="name">
-                    <hr>
-                    <h6>enter what burger you want do eat!</h6>
-                    <h6>then simply click "Add Da Burger" whenever.</h6>
-                </div>
-
-                <button class="button" type="submit">Add Da Burger</button>
-
-            </form>
-        </div>
-        <div class="col">
-            <h6>Devoured Burgers:</h6>
-            <hr>
-            <ul>
-                {{#each burgers}} {{#if this.devoured}}
-
-                <li>
-                    {{this.burger_name}}
-                    <form action="/{{this.id}}?_method=PUT" method="POST">
-                        <input type="hidden" name="devoured" value="false">
-                    </form>
-
-                </li>
-                {{/if}} {{/each}}
-            </ul>
-        </div>
-    </div>
+<div class="row">
+  <div class="col-sm-12 col-md-6">
+    <ul class="list-group">
+      {{#each burgs}} {{#unless this.devoured }}
+      <li class="list-group-item">
+        <a href='/index/{{this.id}}' class="btn btn-info btn-sm">Eat!</a> &nbsp;&nbsp; {{ this.burger_name }} created on {{ date }}</li>
+      {{/unless}} {{/each}}
+      </sul>
+  </div>
+  <div class="col-sm-12 col-md-6">
+    <ul class="list-group">
+      {{#each burgs }}
+        {{#if this.devoured }}
+          <li id="devoured" class="list-group-item disabled"><a href='#' class="btn btn-warning btn-sm disabled">Devoured!</a> &nbsp;&nbsp; {{ this.burger_name }}</li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
 </div>
