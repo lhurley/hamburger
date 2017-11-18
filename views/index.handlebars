@@ -1,19 +1,54 @@
-<div class="row">
-  <div class="col-sm-12 col-md-6">
-    <ul class="list-group">
-      {{#each burgs}} {{#unless this.devoured }}
-      <li class="list-group-item">
-        <a href='/index/{{this.id}}' class="btn btn-info btn-sm">Eat!</a> &nbsp;&nbsp; {{ this.burger_name }} created on {{ date }}</li>
-      {{/unless}} {{/each}}
-      </sul>
-  </div>
-  <div class="col-sm-12 col-md-6">
-    <ul class="list-group">
-      {{#each burgs }}
-        {{#if this.devoured }}
-          <li id="devoured" class="list-group-item disabled"><a href='#' class="btn btn-warning btn-sm disabled">Devoured!</a> &nbsp;&nbsp; {{ this.burger_name }}</li>
-        {{/if}}
-      {{/each}}
-    </ul>
-  </div>
-</div>
+<div class="container">
+	<div class="row">
+		<h1>Burgers!</h1>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+		</div>
+		<div class="col-sm-4">
+			<h2>Freshy-Fresh Burgers!</h2>
+			<div id="newburg" class="row">
+			<div class="col-sm-4">
+				<ul>
+					{{#each burgers}} {{#unless this.devoured}}
+					<li>
+						{{this.id}}: {{this.burger_name}}
+
+						<form action="/{{this.id}}?_method=PUT" method="POST">
+							<input type="hidden" name="devoured" value="true">
+							<button type="submit">Eat This!</button>
+						</form>
+					</li>
+					{{/unless}} {{/each}}
+				</ul>
+			</div>
+
+			<div class="col-sm-4">
+			</div>
+
+		</div>
+			<div class="col-sm-4">
+			</div>
+			<div id="eaten burgers" class="col-sm-4">
+				<h2>Eaten Burgs</h2>
+				<ul>
+					{{#each burgers}} {{#if this.devoured}}
+					<li>
+						{{this.id}}: {{this.burger_name}}
+					</li>
+					{{/if}} {{/each}}
+				</ul>
+			</div>
+		</div>
+		<div id="addBurger" class="row">
+			<h2>Add a Burger</h2>
+			<form class="create-update-form" action="/" method="POST">
+
+				<div class="form-group">
+					<label for="ca">Burger Name:</label>
+					<input type="text" id="ca" name="burger_name">
+				</div>
+				<button type="submit">Add Burger</button>
+			</form>
+		</div>
+	</div>

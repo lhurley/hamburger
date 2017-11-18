@@ -1,17 +1,31 @@
-const orm = require('../config/orm');
+// Import orm.js
+var orm = require("../config/orm.js");
 
-module.exports = {
-    returnBurgers: (cb) => {
-        orm.selectAll((result) => {
-            return cb(result);
-        });
-    },
+var burger =
+{
+	selectAll: function(cb)
+	{
+		orm.selectAll("burgers", function(res)
+		{
+			cb(res);
+		});
+	},
 
-    addBurger: (bgName) => {
-        orm.insertOne(bgName);
-    },
+insertOne: function(cols, vals, cb)
+{
+	orm.insertOne("burgers", cols, vals, function(res)
+	{
+		cb(res);
+	});
+},
 
-    updateDevoured: (id, status) => {
-        orm.updateOne(id, status);
-    }
+updateOne: function(objColVals, id, cb)
+{
+	orm.updateOne("burgers", objColVals, id, function(res)
+	{
+		cb(res);
+	});
 }
+};
+
+module.exports = burger;

@@ -1,8 +1,14 @@
+### Schema
 
-CREATE TABLE burgers (
-    id INT AUTO_INCREMENT NOT NULL,
-    burger_name VARCHAR(255) NOT NULL,
-    devoured BOOLEAN NOT NULL DEFAULT 0,
-    date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY(id)
+CREATE DATABASE burgers_db;
+
+USE burgers_db;
+
+CREATE TABLE burgers
+(
+	id int NOT NULL AUTO_INCREMENT,
+    burger_name varchar (30) NOT NULL,
+    devoured boolean NOT NULL DEFAULT 0,
+    date TIMESTAMP,
+	PRIMARY KEY (id)
 );
